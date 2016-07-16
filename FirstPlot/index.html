@@ -186,13 +186,14 @@ var myChart = new Chart(ctx, {
             data: [91.3461538461538, 1, 25.7022332506203, 0, 58.10625, 232.2, 250, 305, 361.2, 392],
             backgroundColor: 'rgba(24, 188, 156, 0.6)',
             borderColor: 'rgba(9, 74, 61, 1)',
-            borderWidth: 2
+            borderWidth: 2,
+            showLines: false
         }]
     },
     options: {
     	title: {
             display: true,
-            text: 'Top 20 Chord Progressions used in Country Music',
+            text: 'Mean Injuries',
             fontSize: 30
         },
         scales: {
@@ -202,14 +203,14 @@ var myChart = new Chart(ctx, {
                 },
                 scaleLabel: {
         			display: true,
-        			labelString: 'Count',
+        			labelString: 'Mean Number of Injuries',
         			fontSize: 30
       			}
             }],
             xAxes: [{
                 scaleLabel: {
         			display: true,
-        			labelString: 'Chord Progression',
+        			labelString: 'Total Number of Lanes',
         			fontSize: 30
       			}
             }]

@@ -154,16 +154,27 @@ color: #2C3E50;}
 <div class="fluid-row" id="header">
 </div>
 
-<h1> More Injuries Occur Near Subway Stops and Tourist Attractions</h1>
+<h1> More Injuries Occur Near Tourist Attractions and Subway Stops</h1>
 <header>
     <hr class="star-light">
 </header>
+<h3>Hypothesis</h3>
+I Hypothesize that there are more injuries in places where pedestrians congregate. 2 examples of these in New York City are around tourist attractions such as museums and subway stops. As a preliminary analysis I look at the density of traffic injuries in Manhattan taken from the <a href="../DataDescription/#CollisionDataset">NYPD motor collisions dataset</a> at points with 3 or more injuries. On this overlay, subway stations and popular 
 
 
 <iframe width="100%" height="520" frameborder="0" src="https://moocarme.carto.com/viz/586ae012-4aae-11e6-92bb-0ecd1babdde5/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 <br>
-<iframe src="https://moocarme.shinyapps.io/plotHists_minDist2subway_tourist/" width="100%" height="520" style="border: none;" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<p>By plotting on the map it is difficult to tell whether exactly there is a higher density of injuries near tourist attractions or subway stops. To this question I calculated the distance from the location of an injury to either the closest subway stop, or the closest tourist attraction. To determine statistical signifcance I repeated the analysis with uniform random locations, and compared the two distributions.</p>
+<p>Random locations in Manahattan were determined by taking a random uniform distribution or latitude and longitude points in the general new york area (latitude: [40.695, 40.88], longitude: [-74.025, -73.9]), and determining whether they lie in Manhattan borough boundaries using a shapefile.</p>
 
+<iframe src="https://moocarme.shinyapps.io/plotHists_minDist2subway_tourist/" width="100%" height="820" style="border: none;" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<br>
+<p>There is statistical signicance between the distributionsso we can reject the null hypothesis that the distance to the closest tourist attraction or subway stop is independent.</p>
+<p>Interestingly we see a small peak at large distances from subway stops or tourist attractions which occurs because of large areas such as Randalls island that are geographically isolated.</p>
+<h3>What's Next</h3>
+<p>Google places API, <i>radar</i> search outputs many search results (upto 200), but with little detail in each result. The <i>nearby</i> search function only out outs 20, but with more detail. To continue this project further I would obtain use the <i>nearby</i> function and attempt to classify the types of business in the area. For example, areas that have high concentrations of bars, such as the east Village, may harbor many pedestrian injuries on Friday and Saturday nights. Alternatively, areas with high concentration of banks, such as midtown Manhattan, may harbor many pedestrian injuries on weekdays, during the daytime. The type of business would act as a feature in my machine learning model. </p>
+<p>Other areas in New York City that pedestrians may congregate are parks, and I anticipate that the boundaries of parks have more pedestrian injuries than average.</p>
+<p>Overall, such features may increase the accuracy of my machine learning model, and suggest methods to achieve Vision Zero in New York City.</p> 
 
 <div class="text-center">
 	 <div class="container" >

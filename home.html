@@ -89,7 +89,22 @@ $(document).ready(function () {
         width: 100%;
         height: 400px;
       }
-
+#map-canvas {
+        width:700px;
+        height: 600px;
+        margin: 0px;
+        padding: 10px;
+        float: left;
+        background: #FFF !important;
+      }
+      #target {
+        width: 345px;
+      }
+      .map-box{
+          background: #FFF !important;
+          padding: 25px;
+          height:600px;
+      }
 </style>
 
 
@@ -231,16 +246,16 @@ $(document).ready(function () {
     </section>
             	
      <!-- About Section -->
-       <div id="map"></div>
-    <script>
-      function initMap() {
-        var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
-      }
-    </script>
+       <div id="map-canvas"></div>
+		    <script>
+		      function initMap() {
+		        var mapDiv = document.getElementById('map');
+		        var map = new google.maps.Map(mapDiv, {
+		            center: {lat: 44.540, lng: -78.546},
+		            zoom: 8
+		        });
+		      }
+		    </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBUXVypA6v8zDd5q5nqfPmn_053GTNjYFI&callback=initMap">
     </script>

@@ -545,4 +545,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <script src="/js/freelancer.js"></script>
 
     </body>
+    <script type="text/javascript">
+
+    //to load bootstrap datepicker
+    $(document).ready(function() {
+        $('#datetimepicker1').datetimepicker({
+            icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+            }
+        });
+    });
+</script>
+
 </html>

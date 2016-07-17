@@ -247,45 +247,81 @@ $(document).ready(function () {
     
             	
      <!-- About Section -->
-     <div class="col-md-4 start_route">
-     	<input id="pac-input" class="controls" type="text"
+     <head>
+    <title>Place Autocomplete</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="pac-input" class="controls" type="text"
         placeholder="Enter a location">
-		    <div id="type-selector" class="controls">
-		      <input type="radio" name="type" id="changetype-all" checked="checked">
-		      <label for="changetype-all">All</label>
+    <div id="type-selector" class="controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
 
-		      <input type="radio" name="type" id="changetype-establishment">
-		      <label for="changetype-establishment">Establishments</label>
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Establishments</label>
 
-		      <input type="radio" name="type" id="changetype-address">
-		      <label for="changetype-address">Addresses</label>
+      <input type="radio" name="type" id="changetype-address">
+      <label for="changetype-address">Addresses</label>
 
-		      <input type="radio" name="type" id="changetype-geocode">
-		      <label for="changetype-geocode">Geocodes</label>
-		    </div>
-   		 <div id="map"></div>
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</label>
+    </div>
+    <div id="map"></div>
 
-            <!-- <div class="add_new_route"> <button class="btn btn-primary"> Add New Route </div> -->
-            <div class="trip_loop1">
-                <h4>Trip Title: </h4>
-                <input type="text" class="form-control" name="trip_title" value="" placeholder="Trip Title"/>
-               
-                <p> &nbsp;</p>
-                <h4>Start location : </h4>
-                <input class="controls form-control pac-input" type="text" placeholder="Search Box">
-                <h4> Nearest Address</h4>
-                <input id="address1" class="controls form-control" type="text" placeholder="Nearest address">
-                <input TYPE="hidden" name="latitude" class="latitude form-control" value="" />
-                <input TYPE="hidden" name="longitude" class="longitude form-control" value="" />
-                <input type="hidden" name="marker_status" class="form-control" id="info"/>
-            </div>
-            
-            <!-- <div class="trip_loopn"> <button class="btn btn-primary"> Save Route </div> -->
-      </div>
-     <!--<div class="col-md-8">
-       <div id="map"></div>
-     </div>-->
-		    <script>
+    <script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -365,13 +401,12 @@ $(document).ready(function () {
         setupClickListener('changetype-geocode', ['geocode']);
       }
     </script>
-    
+
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBUXVypA6v8zDd5q5nqfPmn_053GTNjYFI&callback=initMap">
     </script>
-	
+	</body>
 
-	</section>
         <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">

@@ -86,6 +86,7 @@ $(document).ready(function () {
     vertical-align: middle;
 }
 </style>
+<header>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -320,6 +321,81 @@ function computeTotalDistance(result) {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+</header>
+<body>
+    <div class="custom_footer" style="margin-bottom:10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">Google Location Search and Calculate Route</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+        <div class="col-md-4 start_route">
+            <!-- <div class="add_new_route"> <button class="btn btn-primary"> Add New Route </div> -->
+            <div class="trip_loop1">
+                <h4>Trip Title: </h4>
+                <input type="text" class="form-control" name="trip_title" value="" placeholder="Trip Title"/>
+                <h4>Trip Date  : </h4>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="route_date" placeholder="Trip date"/>
+                    <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                    </span>
+                </div>
+                <p> &nbsp;</p>
+                <h4>Start location : </h4>
+                <input class="controls form-control pac-input" type="text" placeholder="Search Box">
+                <h4> Nearest Address</h4>
+                <input id="address1" class="controls form-control" type="text" placeholder="Nearest address">
+                <input TYPE="hidden" name="latitude" class="latitude form-control" value="" />
+                <input TYPE="hidden" name="longitude" class="longitude form-control" value="" />
+                <input type="hidden" name="marker_status" class="form-control" id="info"/>
+            </div>
+            <p>&nbsp;</p>
+            <div class="trip_loop2">
+                <h4>End Location : </h4>
+                <input class="controls form-control pac-input" type="text" placeholder="Search Box">
+                <h4> End Location Nearest Address</h4>
+                <input id="address2" class="controls form-control" type="text" placeholder="Nearest address">
+                <input TYPE="hidden" name="latitude2" class="latitude form-control" value="" />
+                <input TYPE="hidden" name="longitude2" class="longitude form-control" value="" />
+                <input type="hidden" name="marker_status" class="form-control" id="info"/>
+            </div>
+            <!-- <div class="trip_loopn"> <button class="btn btn-primary"> Save Route </div> -->
+      </div>
+
+      <div class="col-md-8">
+          <div id="map-canvas"></div>
+      </div>
+  </div>
+</div>
+<div class="custom_footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">Jay Modi 2015</div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script type="text/javascript">
+    //Added by Jay Modi
+    //to load bootstrap datepicker
+    $(document).ready(function() {
+        $('#datetimepicker1').datetimepicker({
+            icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+            }
+        });
+    });
+</script>
 </header>
     <body id="page-top" class="index">
        <!-- Navigation -->

@@ -5,25 +5,29 @@ library(dplyr)
 library(rgeos)
 library(spatstat)
 
+# load shapefile and read in
 shp <-'../Vision-Zero/nybb_16b/nybb.shp'
 ny <- readOGR(shp, ogrListLayers(shp)[1], stringsAsFactors=FALSE)
 map <- spTransform(ny, CRS("+proj=longlat +datum=WGS84"))
 
-
-num.Rands = 10000
+num.Rands = 10000 # number of random numbers
+# Outer longitude, latitude limits of NYC
 long.Min = -74.025; long.Max = -73.9
 lat.Min = 40.695; lat.Max = 40.88
+# generate random numbers
 random.Longs = runif(num.Rands, long.Min, long.Max)
 random.Lats = runif(num.Rands, lat.Min, lat.Max)
 
+# convert to dataframe 
 dat <- data.frame(Longitude = random.Longs,
                   Latitude  = random.Lats)
 LongLats <- dat
-# Assignment modified according
+# convert to coordinates
 coordinates(dat) <- ~ Longitude + Latitude
 # Set the projection of the SpatialPointsDataFrame using the projection of the shapefile
 proj4string(dat) <- proj4string(map)
 
+# select points only over manhattan boundry
 rand.points <- cbind(over(dat, map), LongLats) %>% 
   filter(BoroName == 'Manhattan') %>%
   dplyr::select(Latitude, Longitude)
@@ -50,9 +54,11 @@ subway_df <- subway_df %>%
   dplyr::distinct()
 
 # Use approx from http://www.movable-type.co.uk/scripts/latlong.html
+# average kms in a lat or long degree
 ave.km.per.Lat.NY <- 111.2
 ave.km.per.Long.NY <- 84.24
 
+# Convert data frames to lists for calculating geographical distances
 tourist_df_lst <- structure(list(lon = tourist_df$Long*ave.km.per.Long.NY, 
                        lat = tourist_df$Lat*ave.km.per.Lat.NY),
                   .Names = c("lon", "lat"), 
@@ -75,10 +81,13 @@ vz_lst <- structure(list(lon = vz_df$LONGITUDE*ave.km.per.Long.NY,
                              .Names = c("lon", "lat"), row.names = c(NA, nrow(vz_df)), 
                              class = "data.frame")
 
+# Convert lists to spatial points
 tourist_df_sp <- SpatialPoints(tourist_df_lst)
 subway_df_sp <- SpatialPoints(subway_df_lst)
 rand.points_sp <- SpatialPoints(rand.points_lst)
 vz_sp <- SpatialPoints(vz_lst)
+
+# Find distance to closest tourist attraction or subway stop
 rand.points_lst$nearest.tourist.attr <- apply(gDistance(rand.points_sp, 
                                                    tourist_df_sp, byid=TRUE), 2, min)
 vz_lst$nearest.tourist.attr <- apply(gDistance(vz_sp, tourist_df_sp, byid=TRUE), 2, min)
@@ -93,6 +102,7 @@ vz_min_Dists_df <- data.frame(dists = vz_lst$nearest.tourist.attr*1000)
 rand_min_Dists2subway_df <- data.frame(dists = rand.points_lst$nearest.subway*1000)
 vz_min_Dists2subway_df <- data.frame(dists = vz_lst$nearest.subway*1000)
 
+# Calculate mean and standard deviations
 mean.Randpts2Attr <- mean(log(rand_min_Dists_df$dists))
 sd.Randpts2Attr <- sd(rand_min_Dists_df$dists)
 mean.vzpts2Attr <- mean(log(vz_min_Dists_df$dists)) 
@@ -143,10 +153,13 @@ plot2 <- ggplot() +
                     labels=c("green"="Random Uniform Distribution", "red"="Injured Persons Distribution"))
 plot2
 plot2_data <- ggplot_build(plot2)
+
+# write to csv files
 write_csv((vz_min_Dists2subway_df), 'vzMinDist2subway.csv')
 write_csv((rand_min_Dists2subway_df), 'randMinDist2subway.csv')
 write_csv((vz_min_Dists_df), 'vzMinDist.csv')
 write_csv((rand_min_Dists_df), 'randMinDist.csv')
 
+# calculate t-tests
 t.test(log(rand_min_Dists_df$dists), log(vz_min_Dists_df$dists))
 t.test(log(rand_min_Dists2subway_df$dists), log(vz_min_Dists2subway_df$dists))

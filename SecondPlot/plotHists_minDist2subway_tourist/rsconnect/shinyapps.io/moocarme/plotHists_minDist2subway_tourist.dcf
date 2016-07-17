@@ -1,0 +1,9 @@
+name: plotHists_minDist2subway_tourist
+account: moocarme
+server: shinyapps.io
+appId: 114809
+bundleId: 506616
+url: https://moocarme.shinyapps.io/plotHists_minDist2subway_tourist/
+when: 1468688743.9216
+asMultiple: FALSE
+asStatic: FALSE
